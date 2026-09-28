@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Solstice & Company — Business Growth Agency</title>
-<meta name="description" content="Solstice & Company is a business growth agency helping small and mid-size businesses grow through strategy, content, and paid advertising. Get a free channel audit today.">
+<title>Solstice & Co — Business Growth Agency</title>
+<meta name="description" content="Solstice & Co is a business growth agency helping small and mid-size businesses grow through strategy, content, and paid advertising. Get a free channel audit today.">
 <meta name="keywords" content="marketing agency, business growth agency, digital marketing, paid ads management, local SEO, social media growth">
 <meta name="robots" content="index, follow">
 <meta name="google-site-verification" content="CimBkN3lq4NwQrKaPiy8UMdD7b1Q3Or5DmkETNCQ_k0" />
-<meta name="author" content="Solstice & Company">
+<meta name="author" content="Solstice & Co">
 <link rel="canonical" href="https://khudabuxmahar912-prog.github.io/solstice-website/">
 <meta name="theme-color" content="#4B5D45">
 
 <!-- Open Graph / Facebook / LinkedIn -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://khudabuxmahar912-prog.github.io/solstice-website/">
-<meta property="og:title" content="Solstice & Company — Business Growth Agency">
+<meta property="og:title" content="Solstice & Co — Business Growth Agency">
 <meta property="og:description" content="Marketing that earns attention, not just spends on it. Strategy, content, and paid channels built around real numbers.">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Solstice & Company — Business Growth Agency">
+<meta name="twitter:title" content="Solstice & Co — Business Growth Agency">
 <meta name="twitter:description" content="Marketing that earns attention, not just spends on it. Strategy, content, and paid channels built around real numbers.">
 
 <!-- Structured Data -->
@@ -28,7 +28,7 @@
 {
   "@context": "https://schema.org",
   "@type": "MarketingAgency",
-  "name": "Solstice & Company",
+  "name": "Solstice & Co",
   "description": "Business growth agency helping small and mid-size businesses grow through strategy, content, and paid advertising.",
   "url": "https://khudabuxmahar912-prog.github.io/solstice-website/",
   "priceRange": "$450-$1200"
@@ -177,7 +177,7 @@
 
 <header>
   <nav>
-    <div class="brand">Solstice <span>&</span> Company</div>
+    <div class="brand">Solstice <span>&</span> Co</div>
     <ul class="navlinks">
       <li><a href="#work">Work</a></li>
       <li><a href="#process">Process</a></li>
@@ -318,21 +318,25 @@
       <h2>Tell us about your business.</h2>
       <p class="lead">Share a few details and we'll get back to you within two working days with next steps.</p>
     </div>
-    <form onsubmit="event.preventDefault(); document.getElementById('formStatus').textContent='Thanks — we\'ll be in touch within two working days.';">
+    <form id="contactForm" novalidate>
+      <input type="hidden" name="access_key" value="2cc676f8-b9ca-446f-9e89-1682aa4a5dd8">
+      <input type="hidden" name="subject" value="New enquiry from Solstice & Co website">
+      <input type="hidden" name="from_name" value="Solstice & Co Website">
+      <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
       <div class="field">
         <label for="name">Name</label>
-        <input id="name" type="text" required>
+        <input id="name" name="name" type="text" required>
       </div>
       <div class="field">
         <label for="email">Email</label>
-        <input id="email" type="email" required>
+        <input id="email" name="email" type="email" required>
       </div>
       <div class="field">
         <label for="msg">Tell us about the project</label>
-        <textarea id="msg" required></textarea>
+        <textarea id="msg" name="message" required></textarea>
       </div>
-      <button class="btn-primary" type="submit" style="border:none; cursor:pointer;">Send enquiry</button>
-      <p class="formnote" id="formStatus"></p>
+      <button class="btn-primary" id="submitBtn" type="submit" style="border:none; cursor:pointer;">Send enquiry</button>
+      <p class="formnote" id="formStatus" role="status" aria-live="polite"></p>
     </form>
   </div>
 </section>
@@ -343,6 +347,47 @@
     <span>Based in your city · Available for select clients</span>
   </div>
 </footer>
+
+
+<script>
+  (function () {
+    var form = document.getElementById('contactForm');
+    var btn = document.getElementById('submitBtn');
+    var status = document.getElementById('formStatus');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        status.textContent = 'Please fill in your name, a valid email, and a message.';
+        form.reportValidity();
+        return;
+      }
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      status.textContent = '';
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (data.success) {
+          status.textContent = "Thanks! Your message has been sent. We'll reply within two working days.";
+          form.reset();
+        } else {
+          status.textContent = 'Something went wrong. Please try again in a moment.';
+        }
+      })
+      .catch(function () {
+        status.textContent = 'Network error. Please check your connection and try again.';
+      })
+      .finally(function () {
+        btn.disabled = false;
+        btn.textContent = 'Send enquiry';
+      });
+    });
+  })();
+</script>
 
 </body>
 </html>
