@@ -1,4 +1,4 @@
-# Solstice & Co — Business Growth Agency Website
+# Solstice & Company — Business Growth Agency Website
 
 A modern, fully responsive business website for a growth marketing agency. Built with plain HTML, CSS and JavaScript. No frameworks, fast to load, and easy to customize for any client.
 
@@ -52,7 +52,7 @@ solstice-website/
 
 ## Customize for a client
 
-1. Replace the business name ("Solstice & Co") in the navbar, footer and `<title>`
+1. Replace the business name ("Solstice & Company") in the navbar, footer and `<title>`
 2. Update the text in each section (hero, philosophy, process, pricing)
 3. Change the colors in the `:root` block at the top of the CSS
 4. Update the URLs in the SEO tags, `sitemap.xml` and `robots.txt` to the client's domain
