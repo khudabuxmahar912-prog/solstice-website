@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://khudabuxmahar912-prog.github.io/solstice-website/sitemap.xml
